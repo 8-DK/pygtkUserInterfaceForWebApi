@@ -27,6 +27,8 @@ class Handler:
 
 class mainGtkClass:
 	def __init__(self):
+		self.ApiUrlGetUserBaseUserInfo = "https://res.cloudinary.com/collabizm/image/facebook/c_fill,w_200,h_200,q_auto,g_face,dpr_1,f_auto/v1/"
+		self.apiUrlGetUserList = "https://v2api.collaborizm.com/v2/people/list?page=" #page=0 get page 0 each page contain 16 user
 		builder = Gtk.Builder()
 		builder.add_from_file("main.glade")	
 		builder.connect_signals(Handler())
@@ -42,7 +44,7 @@ class mainGtkClass:
 
 		#notebook elements
 		self.notebook = builder.get_object("notebook")
-		self.Tab1ViewPort = builder.get_object("Tab1ViewPort")
+		self.Tab1ScrollView = builder.get_object("Tab1ScrollView")
 		self.Tab1ListBox = builder.get_object("Tab1ListBox")
 
 		#self.Tab1View = builder.get_object("Tab1View")
@@ -78,12 +80,73 @@ class mainGtkClass:
 		self.usernameLable.set_text(value)
 		lbl = Gtk.Label(value)
 		lbl.set_alignment(xalign=0, yalign=1) 
+
+		lbl1 = Gtk.Label(value)
+		lbl1.set_alignment(xalign=0, yalign=1) 
+		lbl2 = Gtk.Label(value)
+		lbl2.set_alignment(xalign=0, yalign=1) 
+		lbl3 = Gtk.Label(value)
+		lbl3.set_alignment(xalign=0, yalign=1) 
+		lbl4 = Gtk.Label(value)
+		lbl4.set_alignment(xalign=0, yalign=1) 
+		lbl5 = Gtk.Label(value)
+		lbl5.set_alignment(xalign=0, yalign=1) 
+		lbl6 = Gtk.Label(value)
+		lbl6.set_alignment(xalign=0, yalign=1) 
+		lbl7 = Gtk.Label(value)
+		lbl7.set_alignment(xalign=0, yalign=1) 
+		lbl8 = Gtk.Label(value)
+		lbl8.set_alignment(xalign=0, yalign=1) 
+		lbl9 = Gtk.Label(value)
+		lbl9.set_alignment(xalign=0, yalign=1) 
+		lbl10 = Gtk.Label(value)
+		lbl10.set_alignment(xalign=0, yalign=1) 
+		lbl11 = Gtk.Label(value)
+		lbl11.set_alignment(xalign=0, yalign=1) 
+		lbl12 = Gtk.Label(value)
+		lbl12.set_alignment(xalign=0, yalign=1) 
+		lbl13 = Gtk.Label(value)
+		lbl13.set_alignment(xalign=0, yalign=1) 
+		lbl14 = Gtk.Label(value)
+		lbl14.set_alignment(xalign=0, yalign=1) 
+		lbl15 = Gtk.Label(value)
+		lbl15.set_alignment(xalign=0, yalign=1) 
+		lbl16 = Gtk.Label(value)
+		lbl16.set_alignment(xalign=0, yalign=1) 
+		lbl17 = Gtk.Label(value)
+		lbl17.set_alignment(xalign=0, yalign=1) 
+		lbl18 = Gtk.Label(value)
+		lbl18.set_alignment(xalign=0, yalign=1) 
+		lbl19 = Gtk.Label(value)
+		lbl19.set_alignment(xalign=0, yalign=1) 
+		
+
 		self.Tab1ListBox.add(lbl)
+		self.Tab1ListBox.add(lbl1)
+		self.Tab1ListBox.add(lbl2)
+		self.Tab1ListBox.add(lbl3)
+		self.Tab1ListBox.add(lbl4)
+		self.Tab1ListBox.add(lbl5)
+		self.Tab1ListBox.add(lbl6)
+		self.Tab1ListBox.add(lbl7)
+		self.Tab1ListBox.add(lbl8)
+		self.Tab1ListBox.add(lbl9)
+		self.Tab1ListBox.add(lbl10)
+		self.Tab1ListBox.add(lbl11)
+		self.Tab1ListBox.add(lbl12)
+		self.Tab1ListBox.add(lbl13)
+		self.Tab1ListBox.add(lbl14)
+		self.Tab1ListBox.add(lbl15)
+		self.Tab1ListBox.add(lbl16)
+		self.Tab1ListBox.add(lbl17)
+		self.Tab1ListBox.add(lbl18)
+		self.Tab1ListBox.add(lbl19)
+
 		self.downlodImage(jsonObj["facebook_id"],"/tmp/")
 
 	def downlodImage(self,imageUrl,path):
-		userApi = "https://res.cloudinary.com/collabizm/image/facebook/c_fill,w_500,h_500,q_auto,g_face,dpr_1,f_auto/v1/"
-		fullUrl	= userApi + imageUrl
+		
+		fullUrl	= self.ApiUrlGetUserBaseUserInfo + imageUrl
 		disassembled = urlparse(imageUrl)
 		imageName = basename(disassembled.path)
 		path+=imageName+".jpg"
