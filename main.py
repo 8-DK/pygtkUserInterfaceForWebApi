@@ -34,7 +34,10 @@ class mainGtkClass:
 		self.window = builder.get_object("window")
 		self.liststore_project = builder.get_object("liststore_project")
 		self.treeview_project = builder.get_object("treeview_project")
-		#user name elements 
+
+		#avtar image
+		self.avtar = builder.get_object("avtar")
+		#user name lable
 		self.usernameLable = builder.get_object("usernameLable")
 
 		#notebook elements
@@ -76,20 +79,21 @@ class mainGtkClass:
 		lbl = Gtk.Label(value)
 		lbl.set_alignment(xalign=0, yalign=1) 
 		self.Tab1ListBox.add(lbl)
-		self.downlodImage(jsonObj["avatar"],"/tmp/")
+		self.downlodImage(jsonObj["facebook_id"],"/tmp/")
 
 	def downlodImage(self,imageUrl,path):
-		userApi = "https://v2api.collaborizm.com/v2/users/21339/"
+		userApi = "https://res.cloudinary.com/collabizm/image/facebook/c_fill,w_500,h_500,q_auto,g_face,dpr_1,f_auto/v1/"
 		fullUrl	= userApi + imageUrl
 		disassembled = urlparse(imageUrl)
 		imageName = basename(disassembled.path)
-		path+=imageName
+		path+=imageName+".jpg"
 		print fullUrl
 		print path
 		try:
 			f = open(path,'wb')
 			f.write(urllib2.urlopen(fullUrl).read())
 			f.close()
+			self.avtar.set_from_file(path);
 		except:
 			print "cant download avatar"
 
