@@ -10,6 +10,8 @@
       <column type="gint"/>
       <!-- column-name status -->
       <column type="gboolean"/>
+      <!-- column-name userId -->
+      <column type="gchararray"/>
     </columns>
   </object>
   <object class="GtkWindow" id="window">
@@ -191,12 +193,14 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="shadow_type">in</property>
-                <property name="min_content_width">200</property>
+                <property name="min_content_width">300</property>
                 <child>
                   <object class="GtkTreeView" id="treeview_project">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="model">liststore_project</property>
+                    <property name="activate_on_single_click">True</property>
+                    <signal name="row-activated" handler="userSelectFronList" swapped="no"/>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection"/>
                     </child>
@@ -215,22 +219,22 @@
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkLabel" id="usernameLable">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">label</property>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
                   <object class="GtkImage" id="avtar">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="stock">gtk-dialog-error</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="usernameLable">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="label" translatable="yes">label</property>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -269,6 +273,7 @@
                       </object>
                       <packing>
                         <property name="tab_expand">True</property>
+                        <property name="tab_fill">False</property>
                       </packing>
                     </child>
                     <child>
@@ -292,6 +297,7 @@
                       <packing>
                         <property name="position">1</property>
                         <property name="tab_expand">True</property>
+                        <property name="tab_fill">False</property>
                       </packing>
                     </child>
                     <child>
@@ -315,6 +321,7 @@
                       <packing>
                         <property name="position">2</property>
                         <property name="tab_expand">True</property>
+                        <property name="tab_fill">False</property>
                       </packing>
                     </child>
                   </object>
